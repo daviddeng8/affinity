@@ -8,7 +8,7 @@ import urllib
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
-df = pd.read_csv("data/Interactive Media Bias Chart - Ad Fontes Media.csv")
+df = pd.read_csv("Interactive Media Bias Chart - Ad Fontes Media.csv")
 
 # Removing last row of dataframe due to error???
 # df.drop(df.index[len(df) - 1], inplace=True)
@@ -25,10 +25,10 @@ def scrape_header(my_url):
         header = page_soup.h1.text
 
         return header
-    
+
     except urllib.error.HTTPError:
         return None
-    
+
     except:
         return None
 
@@ -47,10 +47,10 @@ def scrape_body(my_url):
             paragraph_list.append(paragraph.text.strip())
 
         return ' '.join(paragraph_list)
-    
+
     except urllib.error.HTTPError:
         return None
-    
+
     except:
         return None
 
@@ -60,4 +60,4 @@ df['Body'] = df['Url'].apply(scrape_body)
 
 # Writing to CSV
 print('Writing to CSV')
-df.to_csv("scraped_data.csv")
+df.to_csv(r'C:\Users\quort\Documents\GitHub\affinity\scraped_data.csv')
